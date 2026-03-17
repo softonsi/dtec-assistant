@@ -16,10 +16,6 @@ pom.releaseBackup
 *~
 
 # Spring Boot (inclui src/main/resources/application-local.yaml - não versionar chaves)
-application-local.yaml
-application-local.yml
-**/application-local.yaml
-**/application-local.yml
 *.log
 
 # Env / secrets

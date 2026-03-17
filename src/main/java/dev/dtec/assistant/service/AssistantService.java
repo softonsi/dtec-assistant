@@ -13,14 +13,12 @@ import java.util.List;
 @Service
 public class AssistantService {
 
-    private final ChatModel chatModel;
     private final StreamingChatModel streamingChatModel;
     private final PromptLoaderService promptLoader;
 
     private static final String FALLBACK_SYSTEM = "Você é um assistente útil. Responda de forma clara e objetiva com base no contexto disponível.";
 
-    public AssistantService(ChatModel chatModel, StreamingChatModel streamingChatModel, PromptLoaderService promptLoader) {
-        this.chatModel = chatModel;
+    public AssistantService(StreamingChatModel streamingChatModel, PromptLoaderService promptLoader) {
         this.streamingChatModel = streamingChatModel;
         this.promptLoader = promptLoader;
     }

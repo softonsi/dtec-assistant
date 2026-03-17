@@ -1,5 +1,3 @@
-# Configuração base. Perfis: local (dev) | prod (produção).
-# Sem perfil ativo, usa "local". Rode com: -Dspring.profiles.active=prod para produção.
 spring:
   application:
     name: dtec-assistant

@@ -1,0 +1,55 @@
+server:
+  port: ${SERVER_PORT:8080}
+  servlet:
+    context-path: ${SERVER_CONTEXT_PATH:/}
+
+# -----------------------------------------------------------------------------
+# Assistente - produção 
+# -----------------------------------------------------------------------------
+assistant:
+  prompt-path: ${ASSISTANT_PROMPT_PATH:classpath:instructions/prompt.txt}
+  prompt-encoding: ${ASSISTANT_PROMPT_ENCODING:UTF-8}
+
+# -----------------------------------------------------------------------------
+# LangChain4j OpenAI - produção (chave sempre por variável de ambiente)
+# -----------------------------------------------------------------------------
+langchain4j:
+  open-ai:
+    chat-model:
+      api-key: ${OPENAI_API_KEY}
+      model-name: ${OPENAI_MODEL:gpt-4o-mini}
+      temperature: 0.5
+      max-tokens: 2048
+      # Formato Duration: PT90S = 90 segundos (evita interpretação como ms)
+      timeout: PT90S
+      max-retries: 3
+      log-requests: false
+      log-responses: false
+    streaming-chat-model:
+      api-key: ${OPENAI_API_KEY}
+      model-name: ${OPENAI_MODEL:gpt-4o-mini}
+      temperature: 0.5
+      max-tokens: 2048
+      # Formato Duration: PT90S = 90 segundos (evita interpretação como ms)
+      timeout: PT90S
+      max-retries: 3
+      log-requests: false
+      log-responses: false
+
+# -----------------------------------------------------------------------------
+# Logging - produção (menos verboso, opcionalmente em arquivo)
+# -----------------------------------------------------------------------------
+logging:
+  level:
+    root: INFO
+    dev.dtec.assistant: INFO
+    org.springframework.web: WARN
+    dev.langchain4j: WARN
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n"
+  file:
+    name: ${LOG_FILE:logs/dtec-assistant.log}
+  logback:
+    rollingpolicy:
+      max-file-size: 50MB
+      max-history: 30

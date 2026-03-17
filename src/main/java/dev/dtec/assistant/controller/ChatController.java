@@ -1,6 +1,5 @@
 package dev.dtec.assistant.controller;
 
-import dev.dtec.assistant.service.AssistantService;
 import dev.dtec.assistant.service.ChatStreamService;
 import dev.dtec.assistant.service.PromptLoaderService;
 import org.springframework.http.MediaType;
@@ -21,12 +20,10 @@ public class ChatController {
     private static final String DEFAULT_MESSAGE = "Olá! Qual sua dúvida sobre o sistema?";
     private static final String FALLBACK_MESSAGE = "Olá.";
 
-    private final AssistantService assistantService;
     private final ChatStreamService chatStreamService;
     private final PromptLoaderService promptLoader;
 
-    public ChatController(AssistantService assistantService, ChatStreamService chatStreamService, PromptLoaderService promptLoader) {
-        this.assistantService = assistantService;
+    public ChatController(ChatStreamService chatStreamService, PromptLoaderService promptLoader) {
         this.chatStreamService = chatStreamService;
         this.promptLoader = promptLoader;
     }

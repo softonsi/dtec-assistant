@@ -1,0 +1,55 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /
+
+# -----------------------------------------------------------------------------
+# Assistente - desenvolvimento (prompt do classpath)
+# -----------------------------------------------------------------------------
+assistant:
+  prompt-path: classpath:instructions/prompt.txt
+  prompt-encoding: UTF-8
+
+# -----------------------------------------------------------------------------
+# LangChain4j OpenAI - desenvolvimento
+# Defina a variável de ambiente OPENAI_API_KEY (este arquivo não deve conter chave)
+# -----------------------------------------------------------------------------
+langchain4j:
+  open-ai:
+    chat-model:
+      api-key: ${OPENAI_API_KEY}
+      model-name: gpt-4o-mini
+      temperature: 0.7
+      max-tokens: 1024
+      # Timeout: use formato Duration (PT…S). Número puro pode ser lido como milissegundos.
+      # PT300S = 300 segundos (5 min) para prompt grande
+      timeout: PT300S
+      max-retries: 2
+      log-requests: false
+      log-responses: false
+    streaming-chat-model:
+      api-key: ${OPENAI_API_KEY}
+      model-name: gpt-4o-mini
+      temperature: 0.7
+      max-tokens: 1024
+      timeout: PT300S
+      max-retries: 2
+      log-requests: false
+      log-responses: false
+
+# -----------------------------------------------------------------------------
+# Logging - desenvolvimento
+# -----------------------------------------------------------------------------
+logging:
+  level:
+    root: INFO
+    dev.dtec.assistant: DEBUG
+    org.springframework.web: DEBUG
+    dev.langchain4j: INFO
+  pattern:
+    console: "%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n"
+
+# Para ver request/response da OpenAI no console, altere no seu application-local.yaml:
+#   log-requests: true
+#   log-responses: true
+#   logging.level.dev.langchain4j: DEBUG
